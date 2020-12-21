@@ -1,5 +1,6 @@
 const express = require('express');
 const Room = require('../models/Room');
+const Review = require('../models/Review');
 const router = express.Router();
 
 //show all rooms
@@ -88,4 +89,44 @@ router.post("/edit/:id", (req, res, next) => {
         }
 })
 
+//get reviews
+router.get("/addreview/:id/", (req, res, next) => {
+
+        if (req.isAuthenticated()) {
+                Room.findById(req.params.id)
+                        .then((room) => {
+                                if (req.user.id != room.owner) {
+                                        const userName = req.user.fullName;
+                                        // console.log(user)
+                                        res.render("rooms/addReview", { room, userName });
+                                } else {
+                                        console.log("you are not allowed to add reviews to this room");
+                                }
+                        })
+                        .catch((err) => {
+                                next(err);
+                        });
+        }
+});
+
+router.post("/addreview/:id/", (req, res, next) => {
+        const { user, comments } = req.body;
+        console.log(req.user)
+
+        if (req.isAuthenticated()) {
+                Review
+                        .create({
+                                user: req.user._id,
+                                comment: req.body.comments,
+                        })
+                        .then((() => {
+                                Room
+                                        .findByIdAndUpdate(req.params.id, { $push: { reviews: { user: user, comments: comments } }, }, { new: true })
+                                        .then((room) => { res.redirect("/rooms") })
+                                        .catch((err) => { next(err) });
+                        }))
+                        .catch((err) => { next(err) });
+
+        }
+});
 module.exports = router;

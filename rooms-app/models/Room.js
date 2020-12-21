@@ -6,7 +6,7 @@ const RoomSchema = new Schema({
         description: { type: String },
         imageUrl: { type: String },
         owner: { type: Schema.Types.ObjectId, ref: 'User' },
-        reviews: []
+        reviews: [{ user: String, comments: String }]
 });
-const Room = mongoose.model("room", RoomSchema);
+const Room = mongoose.model("Room", RoomSchema);
 module.exports = Room;

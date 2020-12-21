@@ -83,7 +83,7 @@ router.post("/signup", (req, res, next) => {
                                         .then(newUser => {
                                                 console.log({ newUser });
                                                 req.session.user = newUser;
-                                                res.redirect("/")
+                                                res.redirect("/login")
                                         })
 
                         }
