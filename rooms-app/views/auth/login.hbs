@@ -1,0 +1,16 @@
+<div class="">
+
+        <h1>Login</h1>
+    
+        <form action="/login" method="post">
+                <label for="email">Email</label>
+                <input type="text" name="email" value="aaAA11@gmail.com" required>
+                <label for="password">Password </label>
+                <input type="password" name="password" value="aaAA11" required>
+                <button type="submit">Login</button>
+        </form>
+        {{#if errorMessage}}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+        <a href="/">Back to main</a>
+</div>

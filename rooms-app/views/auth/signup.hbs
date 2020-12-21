@@ -1,0 +1,18 @@
+<div class="">
+        <h1>Sign up</h1>
+        <form action="/signup" method="post">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" required value="aaAA11@gmail.com">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" value="aaAA11" required>
+                <label for="fullName">Full name</label>
+                <input type="text" name="fullName" id="fullName" required>
+                <button type="submit">Sign up</button>
+        </form>
+        {{#if errorMessage}}
+        <div class="error-message">{{ errorMessage }}</div>
+        {{/if}}
+        <a href="/login">Already have an account? Login</a>
+
+        <a href="/">Back to main</a>
+</div>
