@@ -1,0 +1,20 @@
+<div>
+        <h1>All rooms</h1>
+        {{#each rooms}}
+        <img src="{{this.imageUrl}}" class="card-img-top" alt="{{this.name}}">
+        <h3><a href="/rooms/{{_id}}">{{this.name}}</a></h3>
+        <p>{{this.description}}</p>
+        <p>by {{owner.fullName}}</p>
+
+        {{!-- show buttons after login  --}}
+        {{#if ../user}}
+        <a href="/rooms/edit/{{this._id}}">Edit</a>
+        <a href="/rooms/delete/{{this._id}}">Delete</a>
+        <a href="/rooms/add-review/{{this._id}}">Add review</a>
+        {{message}}
+        {{/if}}
+
+        {{/each}}
+
+
+</div>

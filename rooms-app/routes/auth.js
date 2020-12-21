@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
                                 // Session save went bad
                                 return next(err);
                         }
-                        console.log("check----", theUser, "check2----", req.user)
+                        // console.log("check----", theUser, "check2----", req.user)
                         // All good, we are now logged in and `req.user` is now set
                         res.redirect('/');
                 });
